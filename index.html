@@ -22,11 +22,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form>
+          <div class="mb-3">
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input type="url" class="form-control" id="umageurl" placeholder="http://example.com/image.png"/>
+          </div>
+          <div class="mb-3">
+            <label for="taskTitle" class="form-label">Task Title</label>
+            <input type="text" class="form-control" id="taskTitle" placeholder="Learn Web Dev" required/>
+          </div>
+          <div class="mb-3">
+            <label for="tags" class="form-label">Task Title</label>
+            <input type="text" class="form-control" id="tags" placeholder="Work..." required/>
+          </div>
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Task Desciption</label>
+            <textarea class="form-control" id="taskDescription" placeholder="Explain something about it..." 
+            rows="4" required></textarea>
+          </div>
+          <button 
+           type="button"
+          class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit"
+          type="button" 
+          class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
