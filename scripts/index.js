@@ -1,4 +1,4 @@
-divdivconst state={
+const state={
     taskList:[],
 };
 
@@ -36,4 +36,20 @@ const htmlTaskContents=({id,title, description, type, url})=>`
     </div>
 `;
 
-const htmlModalCoten
+const htmlModalCotent =({id, title, description, url})=>{
+    const date = new Date(parseInt(id));
+    return`
+    <div id=${id}>
+    ${
+        url && `<img width='100%' src=${url} alt='card image cap' class='img-fluid place__holder__image'/>`
+    }
+    <strong class='text-sm text-muted'>Created on ${date.toDateString()}</strong>
+    <h2 class='my-3'>${title}</h2>
+    <p>${description}</p>
+    </div>
+    `
+}
+
+const updatelocalStorage = () => {
+    localStorage.setItem('task', JSON.stringfy())
+}
