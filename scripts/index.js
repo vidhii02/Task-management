@@ -51,5 +51,35 @@ const htmlModalCotent =({id, title, description, url})=>{
 }
 
 const updatelocalStorage = () => {
-    localStorage.setItem('task', JSON.stringfy())
+    localStorage.setItem('task', 
+    JSON.stringfy({
+        tasks: state.taskList,
+    }
+    )
+    );
+};
+
+const LoadInitialData = () =>{
+    const localStorageCopy = JSON.parse(localStorage.tasks)
+    if(localStorageCopy) state.taskList = localStorageCopy.tasks;
+
+    state.taskList.map((cardDate) => {
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContents(cardDate))
+    })
+};
+
+const handleSubmit = (event) =>{
+    const id = `${Date.now()}`;
+    const input = {
+        url: document.getElementById('imageurl').value,
+        title: document.getElementById('taskTitle').value,
+        description: document.getElementById('taskDescription').value,
+        type: document.getElementById(tags).value
+    };
+    taskContents.insertAdjacentHTML("beforeend", htmlTaskContents({...input, 
+        id,
+    })
+    );
+    state.taskList.push({...input, id})
+    updatelocalStorage();
 }
