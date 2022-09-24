@@ -8,7 +8,7 @@ const taskModal = document.querySelector(".task_modal_body");
 
 const htmlTaskContents=({id,title, description, type, url})=>`
     <div class='col-md-6 col-lg-4 mt-3' id=${id} key=${id}>
-        <div class='card shaodow-sm task__card'>
+        <div class='card shadow-sm task__card'>
             <div class='card-header d-flex gap-2 justify-content-end task__card__header'>
             <button type='button' class='btn btn-outline-info mr-2' name=${id}>
             <i class='fas fa-pencil-alt' name=${id}></i>
@@ -17,7 +17,7 @@ const htmlTaskContents=({id,title, description, type, url})=>`
             <i class='fas fa-trash-alt' name=${id}></i>
             </button>
             </div>
-                <div class='card-body>
+                <div class='card-body'>
                 ${
                     url && `<img width='100%' src=${url} alt='card image cap' class='card-image-top md-3 rounded-lg'/>`
                 }
@@ -28,8 +28,8 @@ const htmlTaskContents=({id,title, description, type, url})=>`
                 <span class='badge bg-primary m-1'>${type}</span>
                 </div>  
                 <div class='card-footer'>
-                <button type='button class='btn btn-outline-primaryy float-right' data-bs-toggle='modal'
-                data-bs-target='#showTask'>Open Task</button> 
+                <button type='button class='btn btn-outline-primary float-right' data-bs-toggle='modal'
+                data-bs-target='#showTask' id=${id}>Open Task</button> 
                 </div>
             </div>
         </div>
@@ -47,11 +47,11 @@ const htmlModalCotent =({id, title, description, url})=>{
     <h2 class='my-3'>${title}</h2>
     <p>${description}</p>
     </div>
-    `
-}
+    `;
+};
 
 const updatelocalStorage = () => {
-    localStorage.setItem('task', 
+    localStorage.setItem("tasks", 
     JSON.stringfy({
         tasks: state.taskList,
     }
@@ -60,12 +60,12 @@ const updatelocalStorage = () => {
 };
 
 const LoadInitialData = () =>{
-    const localStorageCopy = JSON.parse(localStorage.tasks)
+    const localStorageCopy = JSON.parse(localStorage.tasks);
     if(localStorageCopy) state.taskList = localStorageCopy.tasks;
 
     state.taskList.map((cardDate) => {
-        taskContents.insertAdjacentHTML("beforeend", htmlTaskContents(cardDate))
-    })
+        taskContents.insertAdjacentHTML("beforeend", htmlTaskContents(cardDate));
+    });
 };
 
 const handleSubmit = (event) =>{
@@ -76,7 +76,7 @@ const handleSubmit = (event) =>{
         description: document.getElementById('taskDescription').value,
         type: document.getElementById(tags).value
     };
-    taskContents.insertAdjacentHTML("beforeend", htmlTaskContents({...input, 
+    taskContents.insertAdjacentHTML("beforeend", htmlTaskContent({...input, 
         id,
     })
     );
